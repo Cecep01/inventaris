@@ -19,6 +19,13 @@ class BaranngKeluarController extends Controller
         return view('barangkeluar.index' , compact('barangkeluar'));
     }
 
+
+    public function cetak_barangkeluar()
+    {
+        $barangkeluar = BaranngKeluar::all();
+        return view('barangkeluar.cetak-barangkeluar' , compact('barangkeluar'));
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -43,7 +50,7 @@ class BaranngKeluarController extends Controller
             'tgl_keluar' => ['required'],
             'jurusan' => ['required'],
             'barang_id' => ['required'],
-       
+
 
         ]);
        $barangkeluar = new BaranngKeluar;
@@ -52,6 +59,9 @@ class BaranngKeluarController extends Controller
        $barangkeluar->jurusan = $request->jurusan;
        $barangkeluar->barang_id = $request->barang_id;
        $barangkeluar->save();
+       $barang = Barang::findOrFail($request->barang_id);
+       $barang->stok -= $request->jumlah;
+       $barang->save();
 
         return redirect()->route('barangkeluar.index');
     }
@@ -62,9 +72,12 @@ class BaranngKeluarController extends Controller
      * @param  \App\Models\BaranngKeluar  $baranngKeluar
      * @return \Illuminate\Http\Response
      */
-    public function show(BaranngKeluar $baranngKeluar)
+    public function show($id)
     {
-        //
+        $barangkeluar = BaranngKeluar::findOrFail($id);
+
+        $barang = Barang::all();
+        return view('barangkeluar.show', compact('barangkeluar', 'barang'));
     }
 
     /**
@@ -73,9 +86,12 @@ class BaranngKeluarController extends Controller
      * @param  \App\Models\BaranngKeluar  $baranngKeluar
      * @return \Illuminate\Http\Response
      */
-    public function edit(BaranngKeluar $baranngKeluar)
+    public function edit($id)
     {
-        //
+        $barangkeluar = BaranngKeluar::findOrFail($id);
+
+        $barang = Barang::all();
+        return view('barangkeluar.edit', compact('barangkeluar', 'barang'));
     }
 
     /**
@@ -85,9 +101,30 @@ class BaranngKeluarController extends Controller
      * @param  \App\Models\BaranngKeluar  $baranngKeluar
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BaranngKeluar $baranngKeluar)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'jumlah' => ['required'],
+            'tgl_keluar' => ['required'],
+            'jurusan' => ['required'],
+            'barang_id' => ['required'],
+
+
+        ]);
+       $barangkeluar = new BaranngKeluar;
+       $barangkeluar->jumlah = $request -> jumlah;
+       $barangkeluar->tgl_keluar = $request->tgl_keluar;
+       $barangkeluar->jurusan = $request->jurusan;
+       $barangkeluar->barang_id = $request->barang_id;
+       $barangkeluar->save();
+       $barang = Barang::findOrFail($request->barang_id);
+       $barang->stok -= $request->jumlah;
+       $barang->save();
+
+
+
+
+        return redirect()->route('barangkeluar.index');
     }
 
     /**
@@ -96,8 +133,10 @@ class BaranngKeluarController extends Controller
      * @param  \App\Models\BaranngKeluar  $baranngKeluar
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BaranngKeluar $baranngKeluar)
+    public function destroy($id)
     {
-        //
+        $barangkeluar = BaranngKeluar::findOrFail($id);
+        $barangkeluar->delete();
+        return redirect()->route('barangkeluar.index');
     }
 }

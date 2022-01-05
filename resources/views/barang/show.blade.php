@@ -15,7 +15,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <a href="{{route('barang.store')}}" class="btn btn-success"><span data-feather="arrow-left"></span> To Index</a>
+            <a href="{{route('barang.store')}}" class="btn btn-success"><i class="fas fa-backspace">  Back</i></a>
 
 <div class="form-group">
 <label for = "">Masukkan Nama Barang</label>
@@ -66,7 +66,7 @@
    <option value="rpl">Rpl</option>
    <option value="tsm">Tsm</option>
    <option value="tkr">Tkr</option>
-  
+
 </select>
 
 

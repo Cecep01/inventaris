@@ -34,7 +34,8 @@
             <div class="card">
                 <div class="card-header">
                     Data Peminjam
-                    <a href="{{route('peminjam.create')}}" class="btn btn-primary float-right">Tambah Peminjam</a>
+                    <a href="{{route('peminjam.create')}}" class="btn btn-primary float-right" style="margin-left: 30px"><i class="fas fa-plus-square">   Tambah</i></a>
+                    <a href="{{route('cetak-peminjam')}}" class="btn btn-warning float-right" ><i class="fas fa-print" style="color: white">  Cetak</i></a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -64,9 +65,9 @@
                                         <form action="{{route('peminjam.destroy' , $data->id)}}" method="POST">
                                             @method('delete')
                                             @csrf
-                                            <a href="{{route('peminjam.edit', $data->id)}}" class="btn btn-outline-info">Edit</a>
-                                            <a href="{{route('peminjam.show' ,$data->id)}}" class="btn btn-outline-warning">Show</a>
-                                            <button type="submit" class="btn btn-outline-danger" onclick="return confirm('apakah anda yakin menghapus ini?');">Delete</button>
+                                            <a href="{{route('peminjam.edit', $data->id)}}" class="btn btn-info"><i class="fas fa-edit">   Edit</i></a>
+                                            <a href="{{route('peminjam.show' ,$data->id)}}" class="btn btn-warning"><i class="fas fa-eye">  Show</i></a>
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('apakah anda yakin menghapus ini?');"><i class="fas fa-trash-alt">   Delete</i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -78,5 +79,6 @@
             </div>
         </div>
     </div>
+
 </div>
 @endsection

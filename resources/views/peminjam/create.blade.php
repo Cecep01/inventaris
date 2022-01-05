@@ -21,7 +21,7 @@
                    <form action="{{route('peminjam.store')}}" method="post">
                         @csrf
 
-        
+
                         <div class="form-group">
                             <label for="">Masukan Nama Peminjam</label>
                             <input type="text" name="nm_peminjam" class="form-control @error('nm_peminjam') is-invalid @enderror">
@@ -67,7 +67,7 @@
                                 </span>
                             @enderror
                         </div>
-                  
+
                         <div class="form-group">
                             <label for="">Tanggal Pinjam</label>
                             <input type="date" name="tgl_pinjam" class="form-control @error('tgl_pinjam') is-invalid @enderror">
@@ -78,7 +78,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="">Tanggal Keluar</label>
+                            <label for="">Tanggal Kembali</label>
                             <input type="date" name="tgl_kembali" class="form-control @error('tgl_kembali') is-invalid @enderror">
                              @error('tgl_kembali')
                                 <span class="invalid-feedback" role="alert">
@@ -86,12 +86,12 @@
                                 </span>
                             @enderror
                         </div>
-                        
-                        
-                    
-                        
-                        
-                        
+
+
+
+
+
+
 
                         <div class="form-group">
                             <label for="">Masukan Nama Barang</label>

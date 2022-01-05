@@ -245,8 +245,8 @@ return [
         ],
         [
             'text'        => 'Dashboard',
-            'url'         => 'Admin/home',
-            'icon'        => 'far fa-fw fa-file',
+            'url'         => 'home',
+            'icon'        => 'fas fa-home',
             'label_color' => 'success',
         ],
         [

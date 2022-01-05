@@ -34,7 +34,8 @@
             <div class="card">
                 <div class="card-header">
                     Data Barang Keluar
-                    <a href="{{route('barangkeluar.create')}}" class="btn btn-primary float-right">Tambah barangkeluar</a>
+                    <a href="{{route('barangkeluar.create')}}" class="btn btn-primary float-right" style="margin-left: 30px"><i class="fas fa-plus-square">   Tambah</i></a>
+                    <a href="{{route('cetak-barangkeluar')}}" class="btn btn-warning float-right" ><i class="fas fa-print" style="color: white">  Cetak</i></a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -42,7 +43,7 @@
                             <thead>
                                 <tr>
                                     <th>Nomor</th>
-                                 
+
                                     <th>Jumlah</th>
                                     <th>Tanggal Keluar</th>
                                     <th>jurusan</th>
@@ -57,19 +58,19 @@
                                 @foreach ($barangkeluar as $data)
                                 <tr>
                                     <td>{{$no++}}</td>
-                                 
+
                                     <td>{{$data->jumlah}}</td>
                                     <td>{{$data->tgl_keluar}}</td>
                                     <td>{{$data->jurusan}}</td>
                                     <td>{{$data->barang->nm_barang}}</td>
-                                   
+
                                     <td>
                                         <form action="{{route('barangkeluar.destroy' , $data->id)}}" method="POST">
                                             @method('delete')
                                             @csrf
-                                            <a href="{{route('barangkeluar.edit', $data->id)}}" class="btn btn-outline-info">Edit</a>
-                                            <a href="{{route('barangkeluar.show' ,$data->id)}}" class="btn btn-outline-warning">Show</a>
-                                            <button type="submit" class="btn btn-outline-danger" onclick="return confirm('apakah anda yakin menghapus ini?');">Delete</button>
+                                            <a href="{{route('barangkeluar.edit', $data->id)}}" class="btn btn-info"><i class="fas fa-edit">   Edit</i></a>
+                                            <a href="{{route('barangkeluar.show' ,$data->id)}}" class="btn btn-warning"><i class="fas fa-eye">  Show</i></a>
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('apakah anda yakin menghapus ini?');"><i class="fas fa-trash-alt">   Delete</i></button>
                                         </form>
                                     </td>
                                 </tr>

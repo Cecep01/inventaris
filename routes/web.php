@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\BaranngKeluarController;
+use App\Http\Controllers\CetakLaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,5 +49,15 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Admin']], func
         return view('barangkeluar.index');
     });
     Route::resource('barangkeluar' , BaranngKeluarController::class);
-    
+
 });
+
+Route::get('/cetak-barang', [BarangController::class ,'cetak_barang'])->name('cetak-barang');
+Route::get('/cetak/barang', [CetakLaporanController::class ,'create'])->name('cetak-laporan.barang.create');
+Route::post('/cetak/barang', [CetakLaporanController::class, 'store'])->name('cetak-laporan');
+Route::get('/barang-cetak', [CetakLaporanController::class, 'index'])->name('cetak-laporan.barang.index');
+Route::get('/cetak-barangkeluar', [BaranngKeluarController::class ,'cetak_barangkeluar'])->name('cetak-barangkeluar');
+Route::get('/cetak-peminjam' , [PeminjamController::class , 'cetak_peminjam'])->name('cetak-peminjam');
+
+Route::get('/tampungan', [BarangController::class , 'tampungan'])->name('tampungan');
+Route::get('/hapus' , [BarangController::class , 'hapus'])->name('hapus');

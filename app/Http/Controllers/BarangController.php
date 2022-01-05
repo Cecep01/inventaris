@@ -18,6 +18,13 @@ class BarangController extends Controller
         return view('barang.index' , compact('barang'));
     }
 
+
+    public function cetak_barang()
+    {
+        $barang = Barang::all();
+        return view('barang.cetak-barang' , compact('barang'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -43,9 +50,9 @@ class BarangController extends Controller
             'kondisi' => 'required',
             'status' => 'required',
             'jurusan' => 'required' ,
-       
 
-               
+
+
         ]);
         $barang = new Barang;
         $barang->nm_barang = $request->nm_barang;
@@ -54,9 +61,10 @@ class BarangController extends Controller
         $barang->kondisi = $request->kondisi;
         $barang->status = $request->status;
         $barang->jurusan = $request->jurusan;
-    
+
         $barang->save();
-        return redirect()->route('barang.index');
+        return redirect()->route('barang.index')
+        ->with('success','Data Berhasil Di Tambahkan');
 
 
     }
@@ -103,9 +111,9 @@ class BarangController extends Controller
             'jurusan' => 'required' ,
 
 
-               
+
         ]);
-        
+
         $barang = Barang::findOrFail($id);
         $barang->nm_barang = $request->nm_barang;
         $barang->stok = $request->stok;
@@ -113,7 +121,7 @@ class BarangController extends Controller
         $barang->kondisi = $request->kondisi;
         $barang->status = $request->status;
         $barang->jurusan = $request->jurusan;
-  
+
         $barang->save();
         return redirect()->route('barang.index');
     }
@@ -130,4 +138,14 @@ class BarangController extends Controller
         $barang->delete();
         return redirect()->route('barang.index');
     }
+    public function tampungan()
+    {
+        $barang = Barang::all();
+        return view('barang.tampungan' , compact('barang'));
+    }
+    public function hapus($id){
+        $barang = Barang::all()->delete;
+        return view('barang.tampungan' , compact('barang'));
+    }
 }
+

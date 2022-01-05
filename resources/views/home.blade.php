@@ -4,31 +4,32 @@
 Dashboard
 @stop
 @section ('content')
+
 <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-8">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box bg-primary">
               <div class="inner">
-                <h3>150</h3>
+              <p style="text-align: center;">Barang</p>
+               <h3 style="text-align: center;">{{DB::table('barangs')->count()}}</h3>
 
-                <p>Barang Masuk</p>
+
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{route('tampungan')}}" class="small-box-footer" style="color: black">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-8">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                <p style="text-align: center;">Barang Keluar</p>
+                <p style="text-align: center;">Stok</p>
+                <h3 style="text-align: center;">{{DB::table('barangs')->count()}}</h3>
               </div>
               <div class="icon">
                 <i class="bag-flus-fill"></i>
@@ -37,13 +38,13 @@ Dashboard
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-8">
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3 style="text-align: center;">{{DB::table('baranng_keluars')->count()}}</h3>
 
-                <p>User Registrations</p>
+                <p style="text-align: center;">Barang Keluar</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -51,26 +52,14 @@ Dashboard
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
+          
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>65</h3>
 
-                <p>Unique Visitors</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
           <!-- ./col -->
-        </div>
+
         <!-- /.row -->
         <!-- Main row -->
-        
+
 @stop
 
 @section('css')

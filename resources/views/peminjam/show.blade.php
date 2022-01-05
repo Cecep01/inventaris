@@ -15,8 +15,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            
-        <a href="{{route('peminjam.store')}}" class="btn btn-success"><span data-feather="arrow-left"></span>Back To Index</a>
+
+        <a href="{{route('peminjam.store')}}" class="btn btn-success"><i class="fas fa-backspace">  Back</i></a>
             <div class="card">
                 <div class="card-header">Data Program</div>
                 <div class="card-body">
@@ -69,7 +69,7 @@
                                 </span>
                             @enderror
                         </div>
-                  
+
                         <div class="form-group">
                             <label for="">Tanggal Pinjam</label>
                             <input type="date" name="tgl_pinjam" value="{{$peminjam->tgl_pinjam}}" class="form-control @error('tgl_pinjam') is-invalid @enderror" disabled>
@@ -88,12 +88,12 @@
                                 </span>
                             @enderror
                         </div>
-                        
-                        
-                    
-                        
-                        
-                        
+
+
+
+
+
+
 
                         <div class="form-group">
                             <label for="">Nama Barang</label>
