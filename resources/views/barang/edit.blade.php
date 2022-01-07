@@ -14,9 +14,9 @@
 @section ('content')
 <div class="container">
 <div class="row justify-content-center">
-<div class="col-md-12">
+<div class="col-md-8">
 <div class="card">
-<div class="card-header">Data barang</div>
+<div class="card-header bg-primary text-white">Data barang</div>
 <div class="card-body">
 <form action = "{{route('barang.update', $barang->id)}}" method = "post">
 @csrf
@@ -42,30 +42,14 @@
     </label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="kondisi" value="{{$barang->kondisi}}" id="flexCheckChecked" checked>
+    <input class="form-check-input" type="checkbox" name="kondisi" value="{{$barang->kondisi}}" id="flexCheckChecked">
     <label class="form-check-label" for="flexCheckChecked">
       Rusak
     </label>
   </div>
   </div>
 
-  <div class="form-group">
-    <label for="">Status</label>
-  <div class="form-check">
-  <div class="d-flex justify-content-between">
-    <input class="form-check-input" type="checkbox" name="status" value="{{$barang->status}}" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-        Di Pinjam
-    </label>
-  </div>
-  </div>
- 
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="status" value="{{$barang->status}}" id="flexCheckChecked" checked>
-    <label class="form-check-label" for="flexCheckChecked">
-      tidak di pinjam
-    </label>
-  </div>
+
 
 <div class="form-group">
 <label for="">jurusan</label>
@@ -73,12 +57,13 @@
    <option value="Rpl">Rpl</option>
    <option value="Tsm">Tsm</option>
    <option value="Tkr">Tkr</option>
-  
+
 </select>
+</div>
 
 <div class="form-group">
-<button type="reset" class="btn btn-outline-warning">Reset</button>
-<button type="submit" class="btn btn-outline-primary">Simpan</button>
+    <button type="reset" class="btn btn-danger"><i class="fas fa-redo-alt">   Reset</i></button>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-save">    Simpan</i></button>
 </div>
 </form>
 </div>

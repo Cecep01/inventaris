@@ -14,9 +14,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Data Program</div>
+                <div class="card-header bg-primary text-white">Form Edit</div>
                 <div class="card-body">
                    <form action="{{route('peminjam.update' , $peminjam->id)}}" method="post"  enctype="multipart/form-data">
                         @csrf
@@ -67,7 +67,7 @@
                                 </span>
                             @enderror
                         </div>
-                  
+
                         <div class="form-group">
                             <label for="">Tanggal Pinjam</label>
                             <input type="date" name="tgl_pinjam" value="{{$peminjam->tgl_pinjam}}" class="form-control @error('tgl_pinjam') is-invalid @enderror">
@@ -86,12 +86,12 @@
                                 </span>
                             @enderror
                         </div>
-                        
-                        
-                    
-                        
-                        
-                        
+
+
+
+
+
+
 
                         <div class="form-group">
                             <label for="">Nama Barang</label>
@@ -109,8 +109,8 @@
 
 
                         <div class="form-group">
-                            <button type="reset" class="btn btn-outline-warning">Reset</button>
-                            <button type="submit" class="btn btn-outline-primary">Simpan</button>
+                            <button type="reset" class="btn btn-danger"><i class="fas fa-redo-alt">   Reset</i></button>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save">    Simpan</i></button>
                         </div>
                    </form>
                 </div>

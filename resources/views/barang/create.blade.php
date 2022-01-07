@@ -15,9 +15,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Data Barang
+                <div class="card-header bg-primary text-white">Data Barang
                 </div>
                 <div class="card-body">
                     <form action="{{route('barang.store')}}" method="POST">
@@ -49,21 +49,7 @@
     </label>
   </div>
   </div>
-  <div class="form-group">
-    <label for="">Status</label>
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="status" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-        Di Pinjam
-    </label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="status" id="flexCheckChecked">
-    <label class="form-check-label" for="flexCheckChecked">
-      tidak di pinjam
-    </label>
-  </div>
-  </div>
+
 <div class="form-group">
 <label for="">jurusan</label>
 <select name="jurusan" id="" class="form-control">
@@ -72,13 +58,14 @@
    <option value="tkr">Tkr</option>
 </select>
 </div>
-  
 
-            
-                <div class="form-group">
-                    <button type="submit" class="btn btn-outline-warning">Reset</button>
-                    <button type="submit" class="btn btn-outline-primary">Simpan</button>
-                </div>
+
+<div class="form-group">
+    <button type="reset" class="btn btn-danger"><i class="fas fa-redo-alt">   Reset</i></button>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-save">    Simpan</i></button>
+</div>
+
+
             </form>
                 </div>
             </div>

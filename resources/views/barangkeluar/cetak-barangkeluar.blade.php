@@ -19,25 +19,25 @@
          <table class="static" align="center" rules="alt" border="1px" style="width : 95%">
 
          <tr>
-                                <th>Nomor</th>
-                                <th>Jumlah</th>
-                                <th>Tanggal Keluar</th>
-                                <th>Jurusan</th>
-                                <th>Nama Barang</th>
+            <th>Nomor</th>
 
-                            </tr>
+            <th>Jumlah</th>
+            <th>Tanggal Keluar</th>
+            <th>Nama Barang</th>
+        </tr>
+    </thead>
+    <tbody>
+        @php
+            $no = 1;
+        @endphp
+        @foreach ($barangkeluar as $data)
+        <tr>
+            <td>{{$no++}}</td>
 
-                            @php
-                                    $no = 1;
-                                @endphp
-                                @foreach ($barangkeluar as $data)
-                                <tr>
-                                    <td>{{$no++}}</td>
+            <td>{{$data->jumlah}}</td>
+            <td>{{$data->tgl_keluar}}</td>
+            <td>{{$data->barang->nm_barang}}</td>
 
-                                    <td>{{$data->jumlah}}</td>
-                                    <td>{{$data->tgl_keluar}}</td>
-                                    <td>{{$data->jurusan}}</td>
-                                    <td>{{$data->barang->nm_barang}}</td>
 
                             @endforeach
         </table>

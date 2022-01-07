@@ -18,6 +18,7 @@ class CreateBaranngKeluarsTable extends Migration
             $table->integer('jumlah');
             $table->date('tgl_keluar');
             $table->string('jurusan');
+            $table->string('kondisi');
             $table->bigInteger('barang_id')->unsigned();
             $table->foreign('barang_id')->references('id')
             ->on('barangs')->onUpdate('cascade')

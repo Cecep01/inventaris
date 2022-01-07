@@ -12,7 +12,7 @@ Dashboard
             <!-- small box -->
             <div class="small-box bg-primary">
               <div class="inner">
-              <p style="text-align: center;">Barang</p>
+              <p style="text-align: center;">Total Barang</p>
                <h3 style="text-align: center;">{{DB::table('barangs')->count()}}</h3>
 
 
@@ -28,13 +28,13 @@ Dashboard
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <p style="text-align: center;">Stok</p>
-                <h3 style="text-align: center;">{{DB::table('barangs')->count()}}</h3>
+                <p style="text-align: center;">Total Peminjam</p>
+                <h3 style="text-align: center;">{{DB::table('peminjams')->count()}}</h3>
               </div>
               <div class="icon">
                 <i class="bag-flus-fill"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{route('peminjam-card')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -42,17 +42,18 @@ Dashboard
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
+                <p style="text-align: center;">Total Barang Keluar</p>
                 <h3 style="text-align: center;">{{DB::table('baranng_keluars')->count()}}</h3>
 
-                <p style="text-align: center;">Barang Keluar</p>
+
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{route('barangkeluar-card')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          
+
           <!-- ./col -->
 
           <!-- ./col -->

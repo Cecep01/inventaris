@@ -49,6 +49,7 @@ class BaranngKeluarController extends Controller
             'jumlah' => ['required'],
             'tgl_keluar' => ['required'],
             'jurusan' => ['required'],
+            'kondisi' => ['required'],
             'barang_id' => ['required'],
 
 
@@ -57,6 +58,7 @@ class BaranngKeluarController extends Controller
        $barangkeluar->jumlah = $request -> jumlah;
        $barangkeluar->tgl_keluar = $request->tgl_keluar;
        $barangkeluar->jurusan = $request->jurusan;
+       $barangkeluar->kondisi = $request->kondisi;
        $barangkeluar->barang_id = $request->barang_id;
        $barangkeluar->save();
        $barang = Barang::findOrFail($request->barang_id);
@@ -107,6 +109,7 @@ class BaranngKeluarController extends Controller
             'jumlah' => ['required'],
             'tgl_keluar' => ['required'],
             'jurusan' => ['required'],
+            'kondisi' => ['required'],
             'barang_id' => ['required'],
 
 
@@ -115,6 +118,7 @@ class BaranngKeluarController extends Controller
        $barangkeluar->jumlah = $request -> jumlah;
        $barangkeluar->tgl_keluar = $request->tgl_keluar;
        $barangkeluar->jurusan = $request->jurusan;
+       $barangkeluar->kondisi = $request->kondisi;
        $barangkeluar->barang_id = $request->barang_id;
        $barangkeluar->save();
        $barang = Barang::findOrFail($request->barang_id);
@@ -138,5 +142,10 @@ class BaranngKeluarController extends Controller
         $barangkeluar = BaranngKeluar::findOrFail($id);
         $barangkeluar->delete();
         return redirect()->route('barangkeluar.index');
+    }
+    public function card()
+    {
+        $barangkeluar = BaranngKeluar::all();
+        return view('barangkeluar.barangkeluar-card' , compact('barangkeluar'));
     }
 }

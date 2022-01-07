@@ -151,4 +151,11 @@ class PeminjamController extends Controller
         $peminjam->delete();
         return redirect()->route('peminjam.index');
     }
+
+    public function peminjam_card()
+    {
+        $peminjam = Peminjam::all();
+        return view('peminjam.peminjam-card' , compact('peminjam'));
+    }
+
 }

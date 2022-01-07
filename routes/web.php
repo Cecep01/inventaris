@@ -60,4 +60,7 @@ Route::get('/cetak-barangkeluar', [BaranngKeluarController::class ,'cetak_barang
 Route::get('/cetak-peminjam' , [PeminjamController::class , 'cetak_peminjam'])->name('cetak-peminjam');
 
 Route::get('/tampungan', [BarangController::class , 'tampungan'])->name('tampungan');
-Route::get('/hapus' , [BarangController::class , 'hapus'])->name('hapus');
+Route::get('/destroy' , [BarangController::class , 'hapus'])->name('destroy');
+Route::get('/barangkeluar-card' , [BaranngKeluarController::class , 'card'])->name('barangkeluar-card');
+Route::get('/peminjam-card' , [PeminjamController::class , 'peminjam_card'])->name('peminjam-card');
+

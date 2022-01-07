@@ -33,9 +33,9 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header bg-danger text-white">
                     Data Barang
-                    <a href="{{route('barang.create')}}" class="btn btn-primary float-right" style="margin-left: 30px"><i class="fas fa-plus-square">   Tambah</i></a>
+                    <a href="{{route('barang.create')}}" class="btn btn-primary float-right br-0" style="margin-left: 30px"><i class="fas fa-plus-square">   Tambah</i></a>
                     <a href="{{route('cetak-barang')}}" class="btn btn-warning float-right" ><i class="fas fa-print" style="color:white">  Cetak</i></a>
                 </div>
                 <div class="card-body">

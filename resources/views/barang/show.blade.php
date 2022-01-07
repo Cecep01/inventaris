@@ -45,21 +45,6 @@
   </div>
   </div>
 
-  <div class="form-group">
-    <label for="">Status</label>
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="status" value="{{$barang->status}}" id="flexCheckDefault" disabled>
-    <label class="form-check-label" for="flexCheckDefault">
-        Di Pinjam
-    </label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="status" value="{{$barang->status}}" id="flexCheckChecked" disabled>
-    <label class="form-check-label" for="flexCheckChecked">
-      tidak di pinjam
-    </label>
-  </div>
-  </div>
 <div class="form-group">
 <label for="">jurusan</label>
 <select name="jurusan" id="" value = "{{$barang->jurusan}" class="form-control" disabled>

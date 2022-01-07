@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-12">
-                <h1 class="text-center m-0">Show Data Barang Keluar</h1>
+                <h1 class="text-center m-0">Barang Keluar</h1>
             </div>
         </div>
     </div>
@@ -14,11 +14,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-8">
 
         <a href="{{route('barangkeluar.store')}}" class="btn btn-success"><i class="fas fa-backspace">  Back</i></a>
             <div class="card">
-                <div class="card-header">Data Barang Keluar</div>
+                <div class="card-header bg-primary text-white">Form Barang Keluar</div>
                 <div class="card-body">
                    <form action="{{route('barangkeluar.update' , $barangkeluar->id)}}" method="post"  enctype="multipart/form-data">
                         @csrf
@@ -47,6 +47,15 @@
                             <label for="">Jurusam</label>
                             <input type="text" name="jurusan" value="{{$barangkeluar->jurusan}}" class="form-control @error('jurusan') is-invalid @enderror" disabled>
                              @error('jurusan')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="">Kondisi</label>
+                            <input type="text" name="kondisi" value="{{$barangkeluar->kondisi}}" class="form-control @error('kondisi') is-invalid @enderror" disabled>
+                             @error('kondisi')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

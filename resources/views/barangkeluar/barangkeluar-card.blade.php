@@ -21,7 +21,7 @@
 <script src="{{ asset('DataTables/datatables.min.js')}}"></script>
 <script>
     $(document).ready(function() {
-        $('#tampungan').DataTable();
+        $('#barangkeluar-card').DataTable();
     });
 </script>
 
@@ -31,20 +31,24 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8 ml-4">
+
             <div class="card">
+
+
                 <div class="card-header bg-primary text-white">
-                    Total Barang
+                    Total Barang Keluar
                     <a href="{{route('home')}}" class="btn btn-success" style="margin-left : 60%"><i class="fas fa-backspace">  Back</i></a>
                 </div>
+
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table" id="tampungan">
+                        <table class="table" id="barangkeluar-card">
                             <thead>
                             <tr>
                                 <th>Nomor</th>
+                                <th>Jumlah</th>
                                 <th>Nama Barang</th>
-                                <th>Stok</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
@@ -52,17 +56,17 @@
                             @php
                                 $no = 1;
                             @endphp
-                            @foreach ($barang as $data)
+                            @foreach ($barangkeluar as $data)
                             <tr>
                                 <td>{{$no++}}</td>
-                                <td>{{$data->nm_barang}}</td>
-                                <td>{{$data->stok}}</td>
+                                <td>{{$data->jumlah}}</td>
+                                <td>{{$data->barang->nm_barang}}</td>
                                 <td>
 
-                                        <form action="{{route('barang.destroy' , $data->id)}}" method="POST">
+                                        <form action="{{route('barangkeluar.destroy' , $data->id)}}" method="POST">
                                             @method('delete')
                                             @csrf
-                                            <a href="{{route('barang.edit', $data->id)}}" class="btn btn-info"><i class="fas fa-edit">   Edit</i></a>
+                                            <a href="{{route('barangkeluar.edit', $data->id)}}" class="btn btn-info"><i class="fas fa-edit">   Edit</i></a>
 
                                                 <button type="submit" class="btn btn-danger" onclick="return confirm('apakah anda yakin menghapus ini?');"><i class="fas fa-trash-alt">   Delete</i></button>
                                         </form>

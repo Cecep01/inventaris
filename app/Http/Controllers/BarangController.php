@@ -48,7 +48,6 @@ class BarangController extends Controller
             'stok' => 'required',
             'tgl_masuk' => 'required',
             'kondisi' => 'required',
-            'status' => 'required',
             'jurusan' => 'required' ,
 
 
@@ -59,7 +58,6 @@ class BarangController extends Controller
         $barang->stok = $request->stok;
         $barang->tgl_masuk = $request->tgl_masuk;
         $barang->kondisi = $request->kondisi;
-        $barang->status = $request->status;
         $barang->jurusan = $request->jurusan;
 
         $barang->save();
@@ -107,7 +105,6 @@ class BarangController extends Controller
             'stok' => 'required',
             'tgl_masuk' => 'required',
             'kondisi' => 'required',
-            'status' => 'required',
             'jurusan' => 'required' ,
 
 
@@ -119,7 +116,6 @@ class BarangController extends Controller
         $barang->stok = $request->stok;
         $barang->tgl_masuk = $request->tgl_masuk;
         $barang->kondisi = $request->kondisi;
-        $barang->status = $request->status;
         $barang->jurusan = $request->jurusan;
 
         $barang->save();
@@ -143,9 +139,11 @@ class BarangController extends Controller
         $barang = Barang::all();
         return view('barang.tampungan' , compact('barang'));
     }
-    public function hapus($id){
-        $barang = Barang::all()->delete;
-        return view('barang.tampungan' , compact('barang'));
+    public function hapus($id)
+    {
+        $barang = Barang::findOrFail($id);
+        $barang->delete();
+        return redirect()->route('barang.tampungan');
     }
 }
 

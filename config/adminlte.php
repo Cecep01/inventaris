@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Inventaris Sekolah',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -231,7 +231,7 @@ return [
             'text'         => 'search',
             'topnav_right' => true,
         ],
-  
+
 
         // Sidebar items:
         [
@@ -267,7 +267,7 @@ return [
             'icon'        => 'far fa-fw fa-file',
             'label_color' => 'success',
         ],
-      
+
     ],
 
     /*

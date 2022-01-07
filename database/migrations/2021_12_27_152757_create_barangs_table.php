@@ -19,7 +19,6 @@ class CreateBarangsTable extends Migration
             $table->string('stok');
             $table->date('tgl_masuk');
             $table->string('kondisi');
-            $table->string('status');
             $table->string('jurusan');
             $table->timestamps();
         });

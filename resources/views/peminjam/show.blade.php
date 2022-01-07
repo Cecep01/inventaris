@@ -18,7 +18,7 @@
 
         <a href="{{route('peminjam.store')}}" class="btn btn-success"><i class="fas fa-backspace">  Back</i></a>
             <div class="card">
-                <div class="card-header">Data Program</div>
+                <div class="card-header bg-primary text-white">Form Peminjam</div>
                 <div class="card-body">
                    <form action="{{route('peminjam.update' , $peminjam->id)}}" method="post"  enctype="multipart/form-data">
                         @csrf

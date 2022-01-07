@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
     use HasFactory;
-    protected $visible = ['nm_barang' , 'stok' , 'tgl_masuk' , 'kondisi' , 'status' , 'jurusan'];
-    protected $fillable = ['nm_barang' , 'stok' , 'tgl_masuk' , 'kondisi' , 'status' ,'jurusah'];
+    protected $visible = ['nm_barang' , 'stok' , 'tgl_masuk' , 'kondisi' , 'jurusan'];
+    protected $fillable = ['nm_barang' , 'stok' , 'tgl_masuk' , 'kondisi' ,'jurusah'];
     //mencatat waktu
     public $timestamps = true ;
 
