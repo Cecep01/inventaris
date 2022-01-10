@@ -33,7 +33,11 @@
                         </div>
                         <div class="form-group">
                             <label for="">Jenis Kelamin</label>
-                            <input type="text" name="jk" class="form-control @error('jk') is-invalid @enderror">
+                            <select name="jk" id="" class="form-control @error('jk') is-invalid @enderror">
+                                <option value="">-- Jenis Kelamin --</option>
+                                <option value="Laki-Laki">Laki-Laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
                              @error('jk')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -42,7 +46,12 @@
                         </div>
                         <div class="form-group">
                             <label for="">Status</label>
-                            <input type="text" name="status" class="form-control @error('status') is-invalid @enderror">
+                           <select name="status" id="" class="form-control @error('status') is-invalid @enderror">
+                            <option value="">-- Silahkan Pilih --</option>
+                            <option value="Di Pinjam">Pinjam</option>
+                            <option value="Tidak Di Pinjam">Tidak Di Pinjam</option>
+
+                           </select>
                              @error('status')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

@@ -30,10 +30,6 @@ class BarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('barang.create');
-    }
 
     /**
      * Store a  newly created resource in storage.
@@ -85,11 +81,6 @@ class BarangController extends Controller
      * @param  \App\Models\Barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $barang = Barang::findOrFail($id);
-        return view('barang.edit' , compact('barang'));
-    }
 
     /**
      * Update the specified resource in storage.

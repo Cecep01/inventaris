@@ -250,21 +250,27 @@ return [
             'label_color' => 'success',
         ],
         [
-            'text'        => 'barang',
+            'text'        => 'Barang Masuk',
             'url'         => 'Admin/barang',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-box',
             'label_color' => 'success',
         ],
         [
-            'text'        => 'peminjam',
+            'text'        => 'Peminjam',
             'url'         => 'Admin/peminjam',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-hand-holding',
             'label_color' => 'success',
         ],
         [
             'text'        => 'Barang Keluar',
             'url'         => 'Admin/barangkeluar',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-box-open',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Cetak Laporan',
+            'url'         => 'laporan',
+            'icon'        => 'fas fa-print',
             'label_color' => 'success',
         ],
 

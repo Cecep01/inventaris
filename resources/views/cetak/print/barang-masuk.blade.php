@@ -30,7 +30,7 @@
                             @php
                                 $no = 1;
                             @endphp
-                            @foreach ($barangs as $data)
+                            @foreach ($laporan as $data)
                             <tr>
                                 <td>{{$no++}}</td>
                                 <td>{{$data->nm_barang}}</td>

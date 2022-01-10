@@ -32,10 +32,10 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header bg-danger text-white">
+                <div class="card-header bg-info text-light">
                     Data Peminjam
                     <a href="{{route('peminjam.create')}}" class="btn btn-primary float-right" style="margin-left: 30px"><i class="fas fa-plus-square">   Tambah</i></a>
-                    <a href="{{route('cetak-peminjam')}}" class="btn btn-warning float-right" ><i class="fas fa-print" style="color: white">  Cetak</i></a>
+                    <a href="{{route('getlaporanKeluar')}}" class="btn btn-warning float-right" ><i class="fas fa-print" style="color: white">  Cetak</i></a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

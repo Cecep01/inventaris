@@ -65,6 +65,7 @@ class PeminjamController extends Controller
        $peminjam->tgl_pinjam = $request->tgl_pinjam;
        $peminjam->tgl_kembali = $request->tgl_kembali;
        $peminjam->barang_id = $request->barang_id;
+
        $peminjam->save();
 
        $barang = Barang::findOrFail($request->barang_id);

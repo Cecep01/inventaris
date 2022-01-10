@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-header bg-primary text-white">Form Barang Keluar</div>
                 <div class="card-body">
-                   <form action="{{route('barangkeluar.update')}}" method="post">
+                   <form action="{{route('barangkeluar.store')}}" method="post">
                         @csrf
 
 

@@ -3,20 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\BaranngKeluar;
 use App\Models\Peminjam;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CetakLaporanController extends Controller
 {
-    public function store(Request $request){
-
-        $barangs = Barang::where('tgl_masuk', 'LIKE', '%'.$request->tanggal.'%')->get();
-        return redirect()->route('cetak-laporan.barang.index');     
+    public function laporanKeluar()
+    {
+        return view('cetak.print.create');
     }
- public function create()
-{
-  return view('cetak.barang.create');
-}
 
+    public function cetaklaporanKeluar(Request $request)
+    {
+        $start = $request->tanggalawal;
+        $end = $request->tanggalakhir;
+
+        if ($start < $end) {
+            if ($request->pilih == 'barang_masuk') {
+                $laporan = Barang::whereBetween('tgl_masuk', [$start, $end])->get();
+                return view('cetak.print.barang-masuk', compact('laporan'));
+            } else if ($request->pilih == 'barang_keluar') {
+                $laporan = BaranngKeluar::whereBetween('tgl_keluar', [$start, $end])->get();
+                return view('cetak.print.barang-keluar', compact('laporan'));
+            } else {
+                $laporan = Peminjam::whereBetween('tgl_kembali', [$start, $end])->get();
+                return view('cetak.print.peminjam', compact('laporan'));
+            }
+        } else {
+            return redirect()->back()->with('gagal', 'Tanngal tidak valid');
+        }
+    }
 }
