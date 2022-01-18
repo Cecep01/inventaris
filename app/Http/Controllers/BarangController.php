@@ -11,7 +11,10 @@ class BarangController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
+     *
      */
+
     public function index()
     {
         $barang = Barang::all();
@@ -56,7 +59,9 @@ class BarangController extends Controller
         $barang->kondisi = $request->kondisi;
         $barang->jurusan = $request->jurusan;
 
+
         $barang->save();
+
         return redirect()->route('barang.index')
         ->with('success','Data Berhasil Di Tambahkan');
 
@@ -110,7 +115,10 @@ class BarangController extends Controller
         $barang->jurusan = $request->jurusan;
 
         $barang->save();
-        return redirect()->route('barang.index');
+
+        return redirect()->route('barang.index')
+        ->with('success', 'Data Berhasil Di Edit');
+
     }
 
     /**
@@ -123,7 +131,7 @@ class BarangController extends Controller
     {
         $barang = Barang::findOrFail($id);
         $barang->delete();
-        return redirect()->route('barang.index');
+        return redirect()->back()->with('gagal', 'Data Berhasil Di Hapus');
     }
     public function tampungan()
     {

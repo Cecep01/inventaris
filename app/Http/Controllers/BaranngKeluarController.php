@@ -16,7 +16,8 @@ class BaranngKeluarController extends Controller
     public function index()
     {
         $barangkeluar = BaranngKeluar::all();
-        return view('barangkeluar.index' , compact('barangkeluar'));
+        $barang = Barang::all();
+        return view('barangkeluar.index' , compact('barangkeluar' , 'barang'));
     }
 
 
@@ -65,7 +66,7 @@ class BaranngKeluarController extends Controller
        $barang->stok -= $request->jumlah;
        $barang->save();
 
-        return redirect()->route('barangkeluar.index');
+        return redirect()->route('barangkeluar.index')->with('success' , 'barang berhasil di tambah');
     }
 
     /**
@@ -103,7 +104,7 @@ class BaranngKeluarController extends Controller
      * @param  \App\Models\BaranngKeluar  $baranngKeluar
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request , $id)
     {
         $request->validate([
             'jumlah' => ['required'],
@@ -114,7 +115,7 @@ class BaranngKeluarController extends Controller
 
 
         ]);
-       $barangkeluar = new BaranngKeluar;
+       $barangkeluar = BaranngKeluar::findOrfail($id);
        $barangkeluar->jumlah = $request -> jumlah;
        $barangkeluar->tgl_keluar = $request->tgl_keluar;
        $barangkeluar->jurusan = $request->jurusan;
@@ -128,7 +129,7 @@ class BaranngKeluarController extends Controller
 
 
 
-        return redirect()->route('barangkeluar.index');
+        return redirect()->route('barangkeluar.index')->with('success' , 'Data Berhasil DIedit');
     }
 
     /**
@@ -141,11 +142,12 @@ class BaranngKeluarController extends Controller
     {
         $barangkeluar = BaranngKeluar::findOrFail($id);
         $barangkeluar->delete();
-        return redirect()->route('barangkeluar.index');
+        return redirect()->back()->with('gagal' , 'data berhasil di hapus');
     }
     public function card()
     {
         $barangkeluar = BaranngKeluar::all();
-        return view('barangkeluar.barangkeluar-card' , compact('barangkeluar'));
+        $barang = Barang::all();
+        return view('barangkeluar.barangkeluar-card' , compact('barangkeluar' , 'barang'));
     }
 }

@@ -29,16 +29,37 @@
 
 
 @section('content')
+    <div class="d-flex">
+        <div class="col-md-3">
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ $message }}
+
+                </div>
+
+
+            @endif
+               @if (Session::has('gagal'))
+                <div class="alert alert-danger" role="alert">
+                    {{ Session::get('gagal') }}
+                </div>
+            @endif
+
+
+        </div>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
+
             <div class="col-md-12">
                 <div class="card">
+
                     <div class="card-header bg-info text-light">
                         Data Barang
                         <button class="btn btn-primary float-right mx-3" data-toggle="modal" data-target="#createModal"><i
-                                class="fas fa-edit"> Tambah</i></button>
+                                class="fas fa-plus-square"> Tambah</i></button>
 
-                        <a href="{{ route('getlaporanKeluar') }}" class="btn btn-warning float-right text-light"><i
+                        <a href="{{ route('cetak-barang') }}" class="btn btn-warning float-right text-light"><i
                                 class="fas fa-print" style="color:white"> Laporan</i></a>
                     </div>
 
@@ -47,7 +68,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="createModalLabel">Modal title</h5>
+                                    <h5 class="modal-title" id="createModalLabel">Tambah Data Barang</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -70,7 +91,7 @@
                                         <th>Stok</th>
                                         <th>Jurusan</th>
                                         <th>Kondisi</th>
-                                        <th>Aksi</th>
+                                        <th> Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody @php
@@ -84,13 +105,13 @@
                                         <td>{{ $data->kondisi }}</td>
                                         <td class="d-flex">
                                             <button class="btn btn-info mr-1" data-toggle="modal"
-                                                data-target="#editModal"><i class="fas fa-edit"> Edit</i></button>
+                                                data-target="#editModal{{ $data->id }}"><i class="fas fa-edit">
+                                                    Edit</i></button>
 
                                             <form action="{{ route('barang.destroy', $data->id) }}" method="POST">
                                                 @method('delete')
                                                 @csrf
-                                                <a href="{{ route('barang.show', $data->id) }}"
-                                                    class="btn btn-warning"><i class="fas fa-eye"> Show</i></a>
+
                                                 <button type="submit" class="btn btn-danger"
                                                     onclick="return confirm('apakah anda yakin menghapus ini?');"><i
                                                         class="fas fa-trash-alt"> Delete</i></button>
@@ -98,12 +119,12 @@
                                         </td>
                                     </tr>
 
-                                    <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
-                                        aria-labelledby="editModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="editModal{{ $data->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>

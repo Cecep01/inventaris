@@ -1,24 +1,4 @@
-@extends('adminlte::page')
-@section('content_header')
-<div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-12">
-                <h1 class="text-center m-0">Barang Keluar</h1>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-primary text-white">Form Barang Keluar</div>
-                <div class="card-body">
-                   <form action="{{route('barangkeluar.store')}}" method="post">
+ <form action="{{route('barangkeluar.store')}}" method="post">
                         @csrf
 
 
@@ -43,29 +23,39 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="">Jurusam</label>
-                            <input type="text" name="jurusan" class="form-control @error('jurusan') is-invalid @enderror">
-                             @error('jurusan')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="">Kondisi</label>
-                            <input type="text" name="kondisi" class="form-control @error('kondisi') is-invalid @enderror">
-                             @error('kondisi')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+                     <div class="form-group">
+                                <label for="">Jurusan</label>
+                                <select name="jurusan" id=""
+                                    class="form-control @error('jurusan') is-invalid @enderror">
+                                    <option value="">-- Pilih Jurusan --</option>
+                                    <option value="Rpl">Rpl</option>
+                                    <option value="Tsm">Tsm</option>
+                                    <option value="Tkr">Tkr</option>
+                                </select>
+                                @error('jurusan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="">Kondisi</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="kondisi" value="rusak"
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Rusak
+                                    </label>
+                                </div>
                         <div class="form-group">
                             <label for="">Masukan Nama Barang</label>
                             <select name="barang_id" class="form-control @error('barang_id') is-invalid @enderror" >
                                 @foreach($barang as $data)
+                                @if ($data->kondisi == 'rusak')
+
+
                                     <option value="{{$data->id}}">{{$data->nm_barang}}</option>
+                                       @endif
                                 @endforeach
                             </select>
                             @error('barang_id')
@@ -83,14 +73,13 @@
 
 
 
-                        <div class="form-group">
-                            <button type="reset" class="btn btn-danger"><i class="fas fa-redo-alt">   Reset</i></button>
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-save">    Simpan</i></button>
-                        </div>
+                      <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <button type="submit" class="btn btn-primary">Save changes</button>
+     </div>
                    </form>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+
+
+
+

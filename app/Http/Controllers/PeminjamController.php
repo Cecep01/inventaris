@@ -16,14 +16,15 @@ class PeminjamController extends Controller
     public function index()
     {
         $peminjam = Peminjam::all();
-        return view('peminjam.index' , compact('peminjam'));
+        $barang = Barang::all();
+        return view('peminjam.index', compact('peminjam', 'barang'));
     }
 
     public function cetak_peminjam()
     {
         $peminjam = Peminjam::all();
-        return view('peminjam.cetak-peminjam' , compact('peminjam'));
 
+        return view('peminjam.cetak-peminjam', compact('peminjam'));
     }
 
     /**
@@ -34,7 +35,7 @@ class PeminjamController extends Controller
     public function create()
     {
         $barang = Barang::all();
-        return view('peminjam.create' , compact('barang'));
+        return view('peminjam.create', compact('barang'));
     }
 
     /**
@@ -56,22 +57,26 @@ class PeminjamController extends Controller
             'barang_id' => ['required'],
 
         ]);
-       $peminjam = new Peminjam;
-       $peminjam->nm_peminjam = $request->nm_peminjam;
-       $peminjam->jk = $request->jk;
-       $peminjam->status = $request->status;
-       $peminjam->no_tlp = $request->no_tlp;
-       $peminjam->jumlah = $request->jumlah;
-       $peminjam->tgl_pinjam = $request->tgl_pinjam;
-       $peminjam->tgl_kembali = $request->tgl_kembali;
-       $peminjam->barang_id = $request->barang_id;
+        if ($request->tgl_kembali < $request->tgl_pinjam) {
+            return redirect()->back()->with('gagal', 'Tanggal tidak valid');
+        } else {
+            $peminjam = new Peminjam;
+            $peminjam->nm_peminjam = $request->nm_peminjam;
+            $peminjam->jk = $request->jk;
+            $peminjam->status = $request->status;
+            $peminjam->no_tlp = $request->no_tlp;
+            $peminjam->jumlah = $request->jumlah;
+            $peminjam->tgl_pinjam = $request->tgl_pinjam;
+            $peminjam->tgl_kembali = $request->tgl_kembali;
+            $peminjam->barang_id = $request->barang_id;
 
-       $peminjam->save();
+            $peminjam->save();
 
-       $barang = Barang::findOrFail($request->barang_id);
-       $barang->stok -= $request->jumlah;
-    $barang->save();
-        return redirect()->route('peminjam.index');
+            $barang = Barang::findOrFail($request->barang_id);
+            $barang->stok -= $request->jumlah;
+            $barang->save();
+            return redirect()->route('peminjam.index')->with('success', 'Data Berhasil Di Tambahkan');
+        }
     }
 
     /**
@@ -122,22 +127,28 @@ class PeminjamController extends Controller
             'barang_id' => ['required'],
 
         ]);
-       $peminjam = Peminjam::findOrFail($id);
-       $peminjam->nm_peminjam = $request->nm_peminjam;
-       $peminjam->jk = $request->jk;
-       $peminjam->status = $request->status;
-       $peminjam->no_tlp = $request->no_tlp;
-       $peminjam->jumlah = $request->jumlah;
-       $peminjam->tgl_pinjam = $request->tgl_pinjam;
-       $peminjam->tgl_kembali = $request->tgl_kembali;
-       $peminjam->barang_id = $request->barang_id;
-       $peminjam->save();
 
-       $barang = Barang::findOrFail($request->barang_id);
-       $barang->stok -= $request->jumlah;
-    $barang->save();
 
-        return redirect()->route('peminjam.index');
+        if ($request->tgl_kembali < $request->tgl_pinjam) {
+            return redirect()->back()->with('gagal', 'Tanggal tidak valid');
+        } else {
+            $peminjam = Peminjam::findOrFail($id);
+            $peminjam->nm_peminjam = $request->nm_peminjam;
+            $peminjam->jk = $request->jk;
+            $peminjam->status = $request->status;
+            $peminjam->no_tlp = $request->no_tlp;
+            $peminjam->jumlah = $request->jumlah;
+            $peminjam->tgl_pinjam = $request->tgl_pinjam;
+            $peminjam->tgl_kembali = $request->tgl_kembali;
+            $peminjam->barang_id = $request->barang_id;
+            $peminjam->save();
+
+            $barang = Barang::findOrFail($request->barang_id);
+            $barang->stok -= $request->jumlah;
+            $barang->save();
+
+            return redirect()->route('peminjam.index')->with('success', 'Peminjam berhasil di edit');
+        }
     }
 
     /**
@@ -150,13 +161,12 @@ class PeminjamController extends Controller
     {
         $peminjam = Peminjam::findOrFail($id);
         $peminjam->delete();
-        return redirect()->route('peminjam.index');
+        return redirect()->back()->with('gagal', 'data berhasil di hapus');
     }
 
     public function peminjam_card()
     {
         $peminjam = Peminjam::all();
-        return view('peminjam.peminjam-card' , compact('peminjam'));
+        return view('peminjam.peminjam-card', compact('peminjam'));
     }
-
 }

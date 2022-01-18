@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\BaranngKeluar;
+use App\Models\Barang;
 use Illuminate\Http\Request;
 
-class BarangKeluarController extends Controller
+class BarangController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +15,12 @@ class BarangKeluarController extends Controller
      */
     public function index()
     {
-        $barangkeluar = BaranngKeluar::all();
-        return response()-> json([
-            'succes' => true ,
-            'message' => 'Data Barang Keluar',
-            'data' => $barangkeluar,
-        ], 200 );
-
-
+    $barang = Barang::all();
+     return response()->json( [
+         'success' => true,
+         'message' => 'data barang masuk',
+         'data' => $barang ,
+     ], 200);
 
     }
 
@@ -44,18 +42,18 @@ class BarangKeluarController extends Controller
      */
     public function store(Request $request)
     {
+        $barang = new Barang;
+        $barang->nm_barang = $request->nm_barang;
+        $barang->stok = $request->stok;
+        $barang->tgl_masuk = $request->tgl_masuk;
+        $barang->kondisi = $request->kondisi;
+        $barang->jurusan = $request->jurusan;
 
-        $barangkeluar = new BaranngKeluar;
-        $barangkeluar->jumlah = $request->jumlah;
-        $barangkeluar->tgl_keluar = $request->tgl_keluar;
-        $barangkeluar->jurusan = $request->jurusan;
-        $barangkeluar->kondisi = $request->kondisi;
-        $barangkeluar->barang_id = $request->barang_id;
-        $barangkeluar->save();
+        $barang->save();
         return response()->json([
-            'success' => true ,
-            'message' => 'berhasil menambahkan data',
-            'data' => $barangkeluar,
+            'success' => true,
+            'message' => 'data berhasil di tambah',
+            'data' => $barang,
         ], 200);
     }
 
@@ -90,17 +88,19 @@ class BarangKeluarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $barangkeluar = BaranngKeluar::findOrfail($id);
-        $barangkeluar->jumlah = $request->jumlah;
-        $barangkeluar->tgl_keluar = $request->tgl_keluar;
-        $barangkeluar->jurusan = $request->jurusan;
-        $barangkeluar->kondisi = $request->kondisi;
-        $barangkeluar->barang_id = $request->barang_id;
-        $barangkeluar->save();
+
+        $barang = Barang::findOrfail($id);
+        $barang->nm_barang = $request->nm_barang;
+        $barang->stok = $request->stok;
+        $barang->tgl_masuk = $request->tgl_masuk;
+        $barang->kondisi = $request->kondisi;
+        $barang->jurusan = $request->jurusan;
+
+        $barang->save();
         return response()->json([
             'success' => true,
-            'message' => 'berhasil menambahkan data',
-            'data' => $barangkeluar,
+            'message' => 'data berhasil di edit',
+            'data' => $barang,
         ], 200);
     }
 
@@ -112,12 +112,6 @@ class BarangKeluarController extends Controller
      */
     public function destroy($id)
     {
-        $barangkeluar = BaranngKeluar::findOrFail($id);
-        $barangkeluar->delete();
-        return response()->json([
-            'success' => true,
-            'message' => 'berhasil menambahkan data',
-            'data' => $barangkeluar,
-        ], 200);
+        //
     }
 }

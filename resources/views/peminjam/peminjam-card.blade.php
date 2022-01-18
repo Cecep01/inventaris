@@ -66,11 +66,28 @@
                                         <form action="{{route('peminjam.destroy' , $data->id)}}" method="POST">
                                             @method('delete')
                                             @csrf
-                                            <a href="{{route('peminjam.edit', $data->id)}}" class="btn btn-info"><i class="fas fa-edit">   Edit</i></a>
-
+                                                   <button class="btn btn-info mr-1" data-toggle="modal"
+                                                    data-target="#editModal{{ $data->id }}"><i class="fas fa-edit"> Edit</i></button>
                                                 <button type="submit" class="btn btn-danger" onclick="return confirm('apakah anda yakin menghapus ini?');"><i class="fas fa-trash-alt">   Delete</i></button>
                                         </form>
                                 </td>
+                                 <div class="modal fade" id="editModal{{ $data->id }}" tabindex="-1" role="dialog"
+                                            aria-labelledby="editModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @include('peminjam.edit')
+
+                                                    </div>
+                                                </div>
+                                            </div>
                             </tr>
 
                             @endforeach

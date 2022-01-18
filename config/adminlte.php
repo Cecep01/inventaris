@@ -45,8 +45,8 @@ return [
     |
     */
 
-    'logo' => '<b>Inventaris Sekolah</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/smk.png',
+    'logo' => '<b>Admin Inventaris</b>',
+    'logo_img' => 'vendor/adminlte/dist/img/p.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',

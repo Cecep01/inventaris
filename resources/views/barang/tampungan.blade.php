@@ -35,7 +35,7 @@
             <div class="card">
                 <div class="card-header bg-primary text-white">
                     Total Barang
-                    <a href="{{route('home')}}" class="btn btn-success" style="margin-left : 60%"><i class="fas fa-backspace">  Back</i></a>
+                    <a href="{{route('home')}}" class="btn btn-info col-md-3" style="margin-left : 60%"><i class="fas fa-backspace">  Back</i></a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -57,25 +57,47 @@
                                 <td>{{$no++}}</td>
                                 <td>{{$data->nm_barang}}</td>
                                 <td>{{$data->stok}}</td>
-                                <td>
+                              <td class="d-flex">
+                                            <button class="btn btn-info mr-1" data-toggle="modal"
+                                                data-target="#editModal"><i class="fas fa-edit"> Edit</i></button>
 
-                                        <form action="{{route('barang.destroy' , $data->id)}}" method="POST">
-                                            @method('delete')
-                                            @csrf
-                                            <a href="{{route('barang.edit', $data->id)}}" class="btn btn-info"><i class="fas fa-edit">   Edit</i></a>
+                                            <form action="{{ route('barang.destroy', $data->id) }}" method="POST">
+                                                @method('delete')
+                                                @csrf
 
-                                                <button type="submit" class="btn btn-danger" onclick="return confirm('apakah anda yakin menghapus ini?');"><i class="fas fa-trash-alt">   Delete</i></button>
-                                        </form>
-                                </td>
-                            </tr>
+                                                <button type="submit" class="btn btn-danger"
+                                                    onclick="return confirm('apakah anda yakin menghapus ini?');"><i
+                                                        class="fas fa-trash-alt"> Delete</i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
 
-                            @endforeach
-</tbody>
-                        </table>
+                                    <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="editModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @include('barang.edit')
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                </tbody>
+                            </table>
+
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
