@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 
+use RealRashid\SweetAlert\Facades\Alert;
+
 class BarangController extends Controller
 {
     /**
@@ -20,6 +22,8 @@ class BarangController extends Controller
         $barang = Barang::all();
         return view('barang.index' , compact('barang'));
     }
+
+
 
 
     public function cetak_barang()
@@ -42,9 +46,15 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->file('gambar')) {
+            $image = $request->file('gambar')->store('foto/barang', ['disks' => 'local']);
+        }else{
+            $image = null;
+        }
         $validated = $request->validate(
             ['nm_barang' => 'required',
             'stok' => 'required',
+            'satuan' => 'required',
             'tgl_masuk' => 'required',
             'kondisi' => 'required',
             'jurusan' => 'required' ,
@@ -53,21 +63,43 @@ class BarangController extends Controller
 
         ]);
         $barang = new Barang;
+        $barang->gambar = $image;
         $barang->nm_barang = $request->nm_barang;
         $barang->stok = $request->stok;
+        $barang->satuan = $request->satuan;
         $barang->tgl_masuk = $request->tgl_masuk;
         $barang->kondisi = $request->kondisi;
         $barang->jurusan = $request->jurusan;
 
 
         $barang->save();
+        Alert::success('Berhasil', 'Menambahkan Data');
 
-        return redirect()->route('barang.index')
-        ->with('success','Data Berhasil Di Tambahkan');
+
+        return redirect()->route('barang.index');
+
+
 
 
     }
 
+    public function create_new() {
+        return view('barang.create-new');
+    }
+
+    public function create_old(){
+        $barang = Barang::get();
+        return view('barang.create-old' , compact('barang'));
+    }
+         public function create_old_store(Request $request){
+             $barang = Barang::findOrFail($request->barang_id);
+             $barang->stok += $request->stok;
+             $barang->save();
+        Alert::success('Success', 'Data Berhasil di tambahkan');
+             return redirect(route('barang.index'));
+
+
+         }
     /**
      * Display the specified resource.
      *
@@ -129,10 +161,15 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        $barang = Barang::findOrFail($id);
-        $barang->delete();
-        return redirect()->back()->with('gagal', 'Data Berhasil Di Hapus');
+
+        if (!Barang::destroy($id)) {
+            return redirect()->back();
+        }
+        Alert::success('Success', 'Data deleted successfully');
+        return redirect()->route('barang.index');
     }
+
+
     public function tampungan()
     {
         $barang = Barang::all();
@@ -143,6 +180,10 @@ class BarangController extends Controller
         $barang = Barang::findOrFail($id);
         $barang->delete();
         return redirect()->route('barang.tampungan');
+    }
+    public function barang_dash() {
+        $barang = Barang::all();
+        return view('home' , compact('barang'));
     }
 }
 

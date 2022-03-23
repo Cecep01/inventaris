@@ -22,13 +22,13 @@ class CetakLaporanController extends Controller
         if ($start < $end) {
             if ($request->pilih == 'barang_masuk') {
                 $laporan = Barang::whereBetween('tgl_masuk', [$start, $end])->get();
-                return view('cetak.print.barang-masuk', compact('laporan'));
+                return view('cetak.print.barang-masuk', compact('laporan' , 'start' , 'end'));
             } else if ($request->pilih == 'barang_keluar') {
                 $laporan = BaranngKeluar::whereBetween('tgl_keluar', [$start, $end])->get();
-                return view('cetak.print.barang-keluar', compact('laporan'));
+                return view('cetak.print.barang-keluar', compact('laporan' , 'start' , 'end'));
             } else {
                 $laporan = Peminjam::whereBetween('tgl_kembali', [$start, $end])->get();
-                return view('cetak.print.peminjam', compact('laporan'));
+                return view('cetak.print.peminjam', compact('laporan' , 'start' , 'end'));
             }
         } else {
             return redirect()->back()->with('gagal', 'Tanngal tidak valid');

@@ -61,6 +61,7 @@
 
                         <a href="{{ route('cetak-barang') }}" class="btn btn-warning float-right text-light"><i
                                 class="fas fa-print" style="color:white"> Laporan</i></a>
+                                <a href = "{{ url('exportexcel') }}" class="btn btn-danger float-right mr-2">Export</a>
                     </div>
 
                     <div class="modal fade" id="createModal" tabindex="-1" role="dialog"
@@ -74,8 +75,9 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    @include('barang.create')
 
+                                  <a href="{{ Route('create-new') }}" class="btn btn-primary">Tambah Barang Baru</a>
+                                      <a href="{{ Route('create-old') }}" class="btn btn-danger">Tambah Barang Lama</a>
                                 </div>
 
                             </div>
@@ -91,6 +93,7 @@
                                         <th>Stok</th>
                                         <th>Jurusan</th>
                                         <th>Kondisi</th>
+
                                         <th> Aksi</th>
                                     </tr>
                                 </thead>
@@ -100,26 +103,33 @@
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $data->nm_barang }}</td>
-                                        <td>{{ $data->stok }}</td>
+                                        <td>{{ $data->stok}} <span>{{ $data->satuan }}</span></td>
                                         <td>{{ $data->jurusan }}</td>
+
                                         <td>{{ $data->kondisi }}</td>
                                         <td class="d-flex">
                                             <button class="btn btn-info mr-1" data-toggle="modal"
                                                 data-target="#editModal{{ $data->id }}"><i class="fas fa-edit">
                                                     Edit</i></button>
 
+                                                     <button class="btn btn-info mr-1" data-toggle="modal"
+                                                data-target="#showModal{{ $data->id }}"><i class="fas fa-edit">
+                                                    show</i></button>
+
+
                                             <form action="{{ route('barang.destroy', $data->id) }}" method="POST">
                                                 @method('delete')
                                                 @csrf
 
-                                                <button type="submit" class="btn btn-danger"
-                                                    onclick="return confirm('apakah anda yakin menghapus ini?');"><i
+
+
+                                                <button type="submit" class="btn btn-danger delete-confirm"
+                                                  ><i
                                                         class="fas fa-trash-alt"> Delete</i></button>
                                             </form>
                                         </td>
                                     </tr>
-
-                                    <div class="modal fade" id="editModal{{ $data->id }}" tabindex="-1"
+                                          <div class="modal fade" id="editModal{{ $data->id }}" tabindex="-1"
                                         role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -136,6 +146,25 @@
                                                 </div>
                                             </div>
                                         </div>
+                                     <div class="modal fade" id="showModal{{ $data->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Show</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @include('barang.show')
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                         @endforeach
                                 </tbody>
                             </table>

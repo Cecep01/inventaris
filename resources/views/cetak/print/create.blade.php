@@ -12,7 +12,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container"> 
           <div class="d-flex">
         <div class="col-md-3">
             @if (Session::has('gagal'))
@@ -23,7 +23,7 @@
         </div>
     </div>
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
 
                     <div class="card-header bg-info text-light">Cetak Laporan</div>

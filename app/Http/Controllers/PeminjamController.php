@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Peminjam;
 use App\Models\Barang;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PeminjamController extends Controller
 {
@@ -49,7 +50,6 @@ class PeminjamController extends Controller
         $request->validate([
             'nm_peminjam' => ['required'],
             'jk' => ['required'],
-            'status' => ['required'],
             'no_tlp' => ['required', 'min:11', 'max:12'],
             'jumlah' => ['required'],
             'tgl_pinjam' => ['required'],
@@ -63,7 +63,6 @@ class PeminjamController extends Controller
             $peminjam = new Peminjam;
             $peminjam->nm_peminjam = $request->nm_peminjam;
             $peminjam->jk = $request->jk;
-            $peminjam->status = $request->status;
             $peminjam->no_tlp = $request->no_tlp;
             $peminjam->jumlah = $request->jumlah;
             $peminjam->tgl_pinjam = $request->tgl_pinjam;
@@ -75,7 +74,10 @@ class PeminjamController extends Controller
             $barang = Barang::findOrFail($request->barang_id);
             $barang->stok -= $request->jumlah;
             $barang->save();
-            return redirect()->route('peminjam.index')->with('success', 'Data Berhasil Di Tambahkan');
+
+
+            Alert::success('Succes , Data Peminjam Berhasil di tambahkan');
+                return redirect()->route('peminjam.index');
         }
     }
 
@@ -119,7 +121,6 @@ class PeminjamController extends Controller
         $request->validate([
             'nm_peminjam' => ['required'],
             'jk' => ['required'],
-            'status' => ['required'],
             'no_tlp' => ['required', 'min:11', 'max:12'],
             'jumlah' => ['required'],
             'tgl_pinjam' => ['required'],
@@ -135,7 +136,6 @@ class PeminjamController extends Controller
             $peminjam = Peminjam::findOrFail($id);
             $peminjam->nm_peminjam = $request->nm_peminjam;
             $peminjam->jk = $request->jk;
-            $peminjam->status = $request->status;
             $peminjam->no_tlp = $request->no_tlp;
             $peminjam->jumlah = $request->jumlah;
             $peminjam->tgl_pinjam = $request->tgl_pinjam;
@@ -166,7 +166,8 @@ class PeminjamController extends Controller
 
     public function peminjam_card()
     {
+        $barang = Barang::all();
         $peminjam = Peminjam::all();
-        return view('peminjam.peminjam-card', compact('peminjam'));
+        return view('peminjam.peminjam-card', compact('peminjam' , 'barang'));
     }
 }

@@ -13,6 +13,12 @@
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
                         <input type="email" class="form-control" name = "email" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        @error('email')
+
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
 
                       </div>
                       <div class="mb-3">
@@ -21,6 +27,7 @@
                       </div>
 
                       <button type="submit" class="btn btn-primary">Submit</button>
+
                     </form>
                 </div>
             </div>

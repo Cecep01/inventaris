@@ -17,11 +17,11 @@ class CreatePeminjamsTable extends Migration
             $table->id();
             $table->string('nm_peminjam');
             $table->string('jk');
-            $table->string('status');
             $table->string('no_tlp');
             $table->integer('jumlah');
             $table->date('tgl_pinjam');
             $table->date('tgl_kembali');
+            $table->boolean('status')->default(0);
             $table->bigInteger('barang_id')->unsigned();
             $table->foreign('barang_id')->references('id')
             ->on('barangs')->onUpdate('cascade')

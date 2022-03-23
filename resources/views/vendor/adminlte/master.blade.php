@@ -88,6 +88,27 @@
         @include('adminlte::plugins', ['type' => 'js'])
 
         <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
+        <script src="{{ asset('assets/alert.js') }}"></script>
+        <script>
+             $(".delete-confirm").click(function (event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    });
+        </script>
     @else
         <script src="{{ mix(config('adminlte.laravel_mix_js_path', 'js/app.js')) }}"></script>
     @endif
@@ -103,6 +124,7 @@
 
     {{-- Custom Scripts --}}
     @yield('adminlte_js')
+     @include('sweetalert::alert')
 
 </body>
 

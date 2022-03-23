@@ -2,6 +2,7 @@
       @csrf
 
 
+
       <div class="form-group">
           <label for="">Nama Peminjam</label>
           <input type="text" name="nm_peminjam" class="form-control @error('nm_peminjam') is-invalid @enderror">
@@ -26,21 +27,8 @@
             </label>
         </div>
     </div>
-      <div class="form-group">
-        <label for="">Status</label>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="status" value="Dipinjam" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-                Dipinjam
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="status" id="flexCheckChecked" value="Tidak Dipinjam">
-            <label class="form-check-label" for="flexCheckChecked">
-                Tidak Dipinjam
-            </label>
-        </div>
-    </div>
+
+
       <div class="form-group">
           <label for="">No Telepon</label>
           <input type="string" name="no_tlp" class="form-control @error('no_tlp') is-invalid @enderror">
@@ -89,9 +77,11 @@
           <label for="">Masukan Nama Barang</label>
           <select name="barang_id" class="form-control @error('barang_id') is-invalid @enderror">
               @foreach ($barang as $data)
-                  @if ($data->kondisi == 'baik')
-                      <option value="{{ $data->id }}">{{ $data->nm_barang }}</option>
-                  @endif
+
+                      <option value="{{ $data->id }}">
+                        {{ $data->nm_barang }}
+
+                    </option>
               @endforeach
           </select>
           @error('barang_id')
@@ -102,8 +92,10 @@
       </div>
 
 
-      <div class="form-group">
-          <button type="reset" class="btn btn-danger"><i class="fas fa-redo-alt"> Reset</i></button>
-          <button type="submit" class="btn btn-primary"><i class="fas fa-save"> Simpan</i></button>
-      </div>
+
+     <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+    </div>
+
   </form>

@@ -17,9 +17,11 @@ class CreateBarangsTable extends Migration
             $table->id();
             $table->string('nm_barang');
             $table->string('stok');
+            $table->string('satuan');
             $table->date('tgl_masuk');
             $table->string('kondisi');
             $table->string('jurusan');
+            $table->string('gambar');
             $table->timestamps();
         });
     }

@@ -15,23 +15,10 @@
               <label for="">Tanggal Masuk</label>
               <input type="date" value="{{ $data->tgl_masuk }}" name="tgl_masuk" class="form-control">
           </div>
-          <div class="form-group">
-              <label for="">Kondisi</label>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="kondisi" value="baik" id="flexCheckDefault"
-                      {{ $data->kondisi == 'baik' ? 'checked' : '' }}>
-                  <label class="form-check-label" for="flexCheckDefault">
-                      Baik
-                  </label>
-              </div>
-              <div class="form-check">
-                  <input class="form-check-input" type="radio" name="kondisi" id="flexCheckChecked" value="rusak"
-                      {{ $data->kondisi == 'rusak' ? 'checked' : '' }}>
-                  <label class="form-check-label" for="flexCheckChecked">
-                      Rusak
-                  </label>
-              </div>
-          </div>
+         <div class="form-group">
+             <label for="">Kondisi</label>
+             <textarea name="kondisi"  id="" class="form-control">{{ $data->kondisi }}</textarea>
+         </div>
 
 
 

@@ -29,23 +29,7 @@
              </label>
          </div>
      </div>
-     <div class="form-group">
-         <label for="">Status</label>
-         <div class="form-check">
-             <input class="form-check-input" type="radio" name="status" value="Dipinjam" id="flexCheckDefault"
-                 {{ $data->status == 'Dipinjam' ? 'checked' : '' }}>
-             <label class="form-check-label" for="flexCheckDefault">
-                 Dipinjam
-             </label>
-         </div>
-         <div class="form-check">
-             <input class="form-check-input" type="radio" name="status" id="flexCheckChecked" value="Tidak Dipinjam"
-                 {{ $data->status == 'Tidak Dipinjam' ? 'checked' : '' }}>
-             <label class="form-check-label" for="flexCheckChecked">
-                 Tidak Dipinjam
-             </label>
-         </div>
-     </div>
+
      <div class="form-group">
          <label for="">No Telepon</label>
          <input type="string" name="no_tlp" value="{{ $data->no_tlp }}"
@@ -98,11 +82,11 @@
          <label for="">Nama Barang</label>
          <select name="barang_id" class="form-control @error('barang_id') is-invalid @enderror">
              @foreach ($barang as $data)
-                 @if ($data->kondisi == 'baik')
+
                      <option value="{{ $data->id }}"
                          {{ $data->id == $data->barang_id ? 'selected="selected"' : '' }}>{{ $data->nm_barang }}
                      </option>
-                 @endif
+                 
              @endforeach
          </select>
          @error('barang_id')

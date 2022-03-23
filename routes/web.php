@@ -5,6 +5,9 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\BaranngKeluarController;
 use App\Http\Controllers\CetakLaporanController;
+use App\Http\Controllers\PengembalianController;
+use App\Exports\BarangExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +51,10 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::get('Admin', function () {
         return view('barangkeluar.index');
     });
+    Route::get('Admin' , function(){
+       return view('pengembalian.index');
+    });
+    Route::resource('pengembalian', PengembalianController::class);
     Route::get('laporan', function () {
         return view('cetak.print.create');
     });
@@ -67,3 +74,13 @@ Route::get('/barangkeluar-card', [BaranngKeluarController::class, 'card'])->name
 Route::get('/peminjam-card', [PeminjamController::class, 'peminjam_card'])->name('peminjam-card');
 Route::get('laporan', [CetakLaporanController::class, 'laporanKeluar'])->name('getlaporanKeluar');
 Route::post('laporan', [CetakLaporanController::class, 'cetaklaporanKeluar'])->name('laporanKeluar');
+
+
+
+Route::get('createnew' , [BarangController::class ,'create_new'])->name('create-new');
+Route::get('createold', [BarangController::class, 'create_old'])->name('create-old');
+Route::put('store' , [BarangController::class , 'create_old_store'])->name('store');
+Route::get('barang_dash' , [BarangController::class , 'barang_dash'])->name('barang_dash');
+Route::get('exportexcel' , function() {
+        return Excel::download(new BarangExport, 'barang.xlsx');
+});

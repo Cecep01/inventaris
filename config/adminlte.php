@@ -262,6 +262,12 @@ return [
             'label_color' => 'success',
         ],
         [
+            'text'        => 'Pengembalian',
+            'url'         => 'Admin/pengembalian',
+            'icon'        => 'fas fa-hand-holding',
+            'label_color' => 'success',
+        ],
+        [
             'text'        => 'Barang Keluar',
             'url'         => 'Admin/barangkeluar',
             'icon'        => 'fas fa-box-open',
